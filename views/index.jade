@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+  head
+    title Keynote
+    script(type="text/javascript" src="http://panzi.github.io/Browser-Ponies/basecfg.js" id="browser-ponies-config")
+    script(type="text/javascript" src="http://panzi.github.io/Browser-Ponies/browserponies.js" id="browser-ponies-script")
+    script(type="text/javascript").
+      /* <![CDATA[ */ (function (cfg) {BrowserPonies.setBaseUrl(cfg.baseurl);BrowserPonies.loadConfig(BrowserPoniesBaseConfig);BrowserPonies.loadConfig(cfg);})({"baseurl":"http://panzi.github.io/Browser-Ponies/","fadeDuration":500,"volume":1,"fps":25,"speed":3,"audioEnabled":false,"showFps":false,"showLoadProgress":true,"speakProbability":0.1,"spawn":{"applejack":1,"fluttershy":1,"pinkie pie":1,"rainbow dash":1,"rarity":1,"twilight sparkle":1},"autostart":true}); /* ]]> */
+    style.
+      body {
+        font-family: 'Helvetica Neue';
+      }
+
+      .center {
+        text-align: center;
+      }
+
+      a{
+        text-decoration: none;
+      }
+
+      a:visited {
+        color: red;
+      }
+
+      a:hover {
+        color: #00FFFF;
+      }
+
+  body
+    h1.center Keynote
+    
+    div.center
+      h3 Pick a keynote yo.
+      ul
+      each slide in slides
+        li
+          a(href="/slide/#{slide}/")
+            =slide
