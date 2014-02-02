@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Estudio de Mercado</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -23,6 +23,17 @@
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
 			document.write( '<link rel="stylesheet" href="/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+		  
+		  var socket = io.connect('/');
+		  
+		  socket.on('hook', function (data) {
+		  	Reveal[data.cmd]();
+		  });
+
 		</script>
 
 		<!--[if lt IE 9]>

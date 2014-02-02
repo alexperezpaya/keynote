@@ -1,9 +1,11 @@
+var http = require('http');
 var express = require('express');
 var fs = require('fs');
 var fs_extended = require('fs-extended');
 
-
 var app = express();
+var server = require('http').createServer(app)
+var io = require('socket.io').listen(server);
 
 app.use('/', express.static(__dirname + '/static'));
 
@@ -30,8 +32,13 @@ app.get('/slide/:name/*:path', function (req, res){
 
 });
 
+app.get('/api/hooks/:cmd', function (req, res){
+	io.sockets.emit('hook', {cmd: req.params.cmd});
+	res.send({msg: 'Done!'});
+});
+
 var port = process.env.PORT || 3000;
 
-app.listen(port, function (){
+server.listen(port, function (){
 	console.log('Up and running on port ' + port);
 });
