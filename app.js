@@ -20,13 +20,17 @@ app.get('/', function (req, res){
 
 });
 
+app.get('/dir', function (req, res){
+	res.send(__dirname);
+});
+
 app.get('/slide/:name', function (req, res){
 
 	res.sendfile(__dirname + '/slides/' + req.params.name + '/index.html' );
 
 });
 
-app.get('/slide/:name/*:path', function (req, res){
+app.get('/slide/:name/:path', function (req, res){
 
 	res.sendfile(__dirname + '/slides/' + req.params.name + '/static/' + req.params.path);
 
